@@ -17,9 +17,9 @@
 #   }
 #
 class git::params (
-  $bin = '/usr/bin/git',
-  $package = undef,
-  $web_package = undef,
+  $bin            = '/usr/bin/git',
+  $package        = undef,
+  $web_package    = undef,
   $daemon_package = undef
 ) {
 
@@ -32,14 +32,14 @@ class git::params (
   }
 
   $webpkg = $web_package ? {
-    undef => $::operatingsystem ? {
+    undef   => $::operatingsystem ? {
       default => ['gitweb'],
     },
     default => $web_package,
   }
 
   $daemonpkg = $daemon_package ? {
-    undef => $::operatingsystem ? {
+    undef   => $::operatingsystem ? {
       /(?i:debian|ubuntu)/  => ['git-daemon-run'],
       default               => ['git-daemon'],
     },
