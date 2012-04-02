@@ -14,8 +14,8 @@
 #
 class git::web::install {
 
-  require git::params
-  $webpkg = $git::params::webpkg
+  require git::web::params
+  $webpkg = $::git::web::params::pkg
 
   package {$webpkg:
     ensure => 'installed',
