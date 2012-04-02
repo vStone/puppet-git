@@ -18,7 +18,8 @@
 #
 class git::params (
   $bin = '/usr/bin/git',
-  $package = undef
+  $package = undef,
+  $daemon_package = undef
 ) {
 
   $pkg = $package ? {
@@ -28,5 +29,16 @@ class git::params (
     },
     default => $package,
   }
+
+  $daemonpkg = $daemon_package ? {
+    undef => $::operatingsystem ? {
+      /(?i:debian|ubuntu)/  => ['git-daemon-run'],
+      default               => ['git-daemon'],
+    },
+    default => $daemon_package,
+  }
+
+
+}
 
 }
