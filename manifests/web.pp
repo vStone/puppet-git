@@ -10,9 +10,12 @@
 #
 # == Requires:
 #
+# A webserver that is running :)
+#
 # == Sample Usage:
 #
 class git::web {
-  include git::web::install
+  class {'git::web::install': } ~>
+  class {'git::web::setup': }
 }
 
